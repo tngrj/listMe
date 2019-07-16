@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Lists</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+		/>
+		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<section class="hero is-small">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						A list for anything
+					</h1>
+					<p class="control has-text-right">
+						<a class="button is-primary" onclick="openForm()">Add item to list</a>
+					</p>
+					<a class="button is-rounded">
+						<span class="icon is-small">
+							<i class="fas fa-check"></i>
+						</span>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div id="listOfTasks"></div>
+				<div class="field box form-popup" id="addTask" style="display:none">
+					<div class="control">
+						<div class="field is-grouped">
+							<label class="label"><b>Task to add</b></label>
+							<button class="delete"></button>
+						</div>
+						<input
+							type="text"
+							class="input"
+							placeholder="Enter Task"
+							id="task"
+							required
+							autofocus
+						/>
+					</div>
+					<button type="button submit" class="button is-success" onclick="closeForm()">
+						Add
+					</button>
+				</div>
+			</div>
+		</section>
+		<script src="index.js"></script>
+	</body>
+</html>

@@ -1,3 +1,12 @@
+let submitButton = document.getElementById('task');
+
+submitButton.addEventListener('keyup', function(event) {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+		document.getElementById('submit').click();
+	}
+});
+
 function openForm() {
 	document.getElementById('addTask').style.display = 'block';
 }

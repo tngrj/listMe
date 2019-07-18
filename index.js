@@ -9,6 +9,7 @@ submitButton.addEventListener('keyup', function(event) {
 
 function openForm() {
 	document.getElementById('addTask').style.display = 'block';
+	document.getElementById('task').focus();
 }
 
 function closeForm() {
@@ -23,18 +24,27 @@ let x = 1;
 
 function addToList(input) {
 	console.log(x);
-	let para = document.createElement('p');
-	para.id = x;
-	para.appendChild(document.createTextNode(input));
-	let element = document.getElementById('listOfTasks');
-	element.appendChild(para);
+	let task = document.createElement('p');
+	task.id = x;
+	task.appendChild(document.createTextNode(input));
+	document.getElementById('listOfTasks').appendChild(task);
 	addCheckBox(x);
 	x++;
 }
 function addCheckBox(id) {
 	let checkBox = document.createElement('a');
 	checkBox.className = 'button is-rounded is-small';
+	checkBox.id = 'checkBox';
 	document.getElementById(id).appendChild(checkBox);
+
+	let a = document.createElement('span');
+	a.className = 'icon is-small';
+	a.id = 'apple';
+	document.getElementById(id).appendChild(a);
+
+	let b = document.createElement('i');
+	b.className = 'fas fa-check';
+	document.getElementById(id).appendChild(b);
 }
 function deleteMe() {
 	//test button

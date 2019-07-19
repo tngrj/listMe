@@ -15,15 +15,15 @@ function openForm() {
 function closeForm() {
 	document.getElementById('addTask').style.display = 'none';
 	let input = document.getElementById('task').value;
-	document.getElementById('task').value = '';
-	addToList(input);
+	if (input.length > 1) {
+		document.getElementById('task').value = '';
+		addToList(input);
+	}
 }
 
-let fragment = document.createDocumentFragment();
 let x = 1;
 
 function addToList(input) {
-	console.log(x);
 	let task = document.createElement('p');
 	task.id = x;
 	task.appendChild(document.createTextNode(input));
@@ -31,21 +31,50 @@ function addToList(input) {
 	addCheckBox(x);
 	x++;
 }
+
 function addCheckBox(id) {
-	let checkBox = document.createElement('a');
-	checkBox.className = 'button is-rounded is-small';
-	checkBox.id = 'checkBox';
-	document.getElementById(id).appendChild(checkBox);
-
-	let a = document.createElement('span');
-	a.className = 'icon is-small';
-	a.id = 'apple';
-	document.getElementById(id).appendChild(a);
-
-	let b = document.createElement('i');
-	b.className = 'fas fa-check';
-	document.getElementById(id).appendChild(b);
+	create('a', {
+		id: 'checkBox', // simple prop
+		parent: id, // parent prop
+		class: 'button is-rounded is-small' // simple prop
+	});
+	var span = create(
+		'span',
+		{
+			parent: id,
+			id: 'apple',
+			class: 'icon is-small'
+		},
+		[
+			create('i', {
+				class: 'fa fa-check'
+			})
+		]
+	);
+	//span.setAttribute('data-something', 1);
 }
+
+function create(name, props, children) {
+	let elem = document.createElement(name);
+	const parent = props.parent;
+	let keys = Object.keys(props);
+	keys = keys.filter(function(key) {
+		return key !== 'parent';
+	});
+	keys.forEach(function(key) {
+		elem.setAttribute(key, props[key]);
+	});
+	if (children && children.length) {
+		children.forEach(function(child) {
+			elem.appendChild(child);
+		});
+	}
+	if (parent) {
+		document.getElementById(x).appendChild(elem);
+	}
+	return elem;
+}
+
 function deleteMe() {
 	//test button
 	// var parent = document.getElementById('listofTasks');

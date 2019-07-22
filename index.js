@@ -33,22 +33,27 @@ function addToList(input) {
 }
 
 function addCheckBox(id) {
-	create('a', {
-		id: 'checkBox', // simple prop
-		parent: id, // parent prop
-		class: 'button is-rounded is-small' // simple prop
-	});
-	var span = create(
-		'span',
+	create(
+		'a',
 		{
-			parent: id,
-			id: 'apple',
-			class: 'icon is-small'
+			id: 'checkBox', // simple prop
+			parent: id, // parent prop
+			class: 'button is-rounded is-small' // simple prop
 		},
 		[
-			create('i', {
-				class: 'fa fa-check'
-			})
+			create(
+				'span',
+				{
+					parent: id,
+					id: 'apple',
+					class: 'icon is-small'
+				},
+				[
+					create('i', {
+						class: 'fa fa-check'
+					})
+				]
+			)
 		]
 	);
 	//span.setAttribute('data-something', 1);

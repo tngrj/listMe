@@ -36,9 +36,9 @@ function addCheckBox(id) {
 	create(
 		'a',
 		{
-			id: 'checkBox', // simple prop
-			parent: id, // parent prop
-			class: 'button is-rounded is-small' // simple prop
+			id: 'checkBox',
+			parent: id,
+			class: 'button is-rounded is-small'
 		},
 		[
 			create(
@@ -56,7 +56,7 @@ function addCheckBox(id) {
 			)
 		]
 	);
-	//span.setAttribute('data-something', 1);
+	document.getElementById(id).setAttribute('onclick', 'deleteMe(this.id)');
 }
 
 function create(name, props, children) {
@@ -80,10 +80,10 @@ function create(name, props, children) {
 	return elem;
 }
 
-function deleteMe() {
+function deleteMe(id) {
 	//test button
 	// var parent = document.getElementById('listofTasks');
 	// var child = document.getElementById('joke');
 	// parent.removeChild(child);
-	document.getElementById('1').outerHTML = '';
+	document.getElementById(id).outerHTML = '';
 }

@@ -1,4 +1,12 @@
 let submitButton = document.getElementById('task');
+let taskStorage = [];
+
+window.addEventListener('DOMContentLoaded', e => {
+	let storedTasks = JSON.parse(localStorage.getItem('taskStorage'));
+	storedTasks.forEach(function(task) {
+		addToList(task);
+	});
+});
 
 submitButton.addEventListener('keyup', function(event) {
 	if (event.keyCode === 13) {
@@ -24,6 +32,7 @@ function closeForm() {
 let x = 1;
 
 function addToList(input) {
+	taskStorage.push(input);
 	let task = document.createElement('p');
 	task.id = x;
 	task.appendChild(document.createTextNode(input));
@@ -81,9 +90,23 @@ function create(name, props, children) {
 }
 
 function deleteMe(id) {
-	//test button
+	// Another method
 	// var parent = document.getElementById('listofTasks');
-	// var child = document.getElementById('joke');
+	// var child = document.getElementById(id);
 	// parent.removeChild(child);
+
+	//deletion of task does not remove from array. Have to add it in
 	document.getElementById(id).outerHTML = '';
+}
+
+taskStorage.onchange = function() {
+	//does not trigger at the moment need to fix
+	saveTasks();
+};
+function saveTasks() {
+	if (window.localStorage) {
+		localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
+	} else {
+		alert('Tasks added will not be saved');
+	}
 }

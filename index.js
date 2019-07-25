@@ -33,6 +33,7 @@ let x = 1;
 
 function addToList(input) {
 	taskStorage.push(input);
+	saveTasks();
 	let task = document.createElement('p');
 	task.id = x;
 	task.appendChild(document.createTextNode(input));
@@ -95,17 +96,16 @@ function deleteMe(id) {
 	// var child = document.getElementById(id);
 	// parent.removeChild(child);
 
-	//deletion of task does not remove from array. Have to add it in
+	let removeTask = document.getElementById(id).textContent;
+	taskStorage = taskStorage.filter(item => item !== removeTask);
 	document.getElementById(id).outerHTML = '';
+	saveTasks();
 }
 
-taskStorage.onchange = function() {
-	//does not trigger at the moment need to fix
-	saveTasks();
-};
 function saveTasks() {
 	if (window.localStorage) {
 		localStorage.setItem('taskStorage', JSON.stringify(taskStorage));
+		console.log('ran');
 	} else {
 		alert('Tasks added will not be saved');
 	}
